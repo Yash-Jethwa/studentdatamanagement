@@ -194,15 +194,29 @@
   <div class="mr-auto">
     <nav class="site-navigation position-relative text-right" role="navigation">
     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-      <li><a href="{{ route('home')}}" class="nav-link text-left">Home</a></li>
-      <li><a href="{{ route('studentform') }}" class="nav-link text-left">Add Student Data</a></li>
-      <li><a href="{{ route('readrecords')}}" class="nav-link text-left">Read Students Data Records</a></li>
       <li>
-        <a href="{{ route('dashboard') }}" class="nav-link text-left">Dashboard</a>
+      <a href="{{ route('home')}}" class="nav-link text-left">Home</a>
+      </li>
+      <!-- <li class="has-children">
+                    <a href="about.html" class="nav-link text-left">About Us</a>
+                    <ul class="dropdown">
+                    <li><a href="teachers.html">Our Teachers</a></li>
+                    <li><a href="about.html">Our School</a></li>
+                    </ul>
+                    </li> -->
+      <li>
+      <a href="{{ route('studentform') }}" class="nav-link text-left">Add Student Data</a>
+      </li>
+      <li>
+      <a href="{{ route('readrecords')}}" class="nav-link text-left">Read Students Records</a>
+      </li>
+      <li>
+      <a href="{{ route('dashboard') }}" class="nav-link text-left">Dashboard</a>
       </li>
       <li>
       <a href="{{ route('marksentryform') }}" class="nav-link text-left">Marks Entry</a>
       </li>
+    </ul>
     </ul>
     </nav>
   </div>
@@ -245,7 +259,7 @@
   </table>
 
   <div>
-    <table style="width: 99%; margin-top: 10%; margin-left: 0.5%; margin-bottom: 20%;" id="myTable">
+    <table style="width: 99%; margin-top: 7%; margin-left: 0.5%; margin-bottom: 20%;" id="myTable">
     <tr class="view" style="background-color: rgb(249, 217, 207)">
       <td colspan="11">View</td>
     </tr>
@@ -358,24 +372,25 @@
   </div>
 
 
-<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="errorModalLabel">Validation Error</h5>
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-          <span aria-hidden="true">&times;</span>
-        </button> -->
+      <h5 class="modal-title" id="errorModalLabel">Validation Error</h5>
+      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+        <span aria-hidden="true">&times;</span>
+      </button> -->
       </div>
       <div class="modal-body">
-        <!-- Error messages will be displayed here -->
+      <!-- Error messages will be displayed here -->
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button> -->
+      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button> -->
       </div>
     </div>
+    </div>
   </div>
-</div>
 @endsection
 
 
@@ -442,26 +457,26 @@
         row.find('.btnsaverow').hide();
         row.find('.btneditrow').show();
         }
-      } 
-
-      
-      ,  error: function(response) {
-      // Handle validation errors
-      var errors = response.responseJSON.errors;
-      var errorMessage = '';
-
-      // Loop through errors and create a message
-      for (var field in errors) {
-        errorMessage += errors[field].join('<br>') + '<br>';
       }
 
-      // Display the error message (e.g., using a modal or alert)
-      $('#errorModal .modal-body').html(errorMessage); // Update modal content
-      $('#errorModal').modal('show');
-    }
+
+      , error: function (response) {
+        // Handle validation errors
+        var errors = response.responseJSON.errors;
+        var errorMessage = '';
+
+        // Loop through errors and create a message
+        for (var field in errors) {
+        errorMessage += errors[field].join('<br>') + '<br>';
+        }
+
+        // Display the error message (e.g., using a modal or alert)
+        $('#errorModal .modal-body').html(errorMessage); // Update modal content
+        $('#errorModal').modal('show');
+      }
 
 
-    });
+      });
     });
     });
   </script>

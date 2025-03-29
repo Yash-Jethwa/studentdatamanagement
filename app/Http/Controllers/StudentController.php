@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Services\DeeplyService;   
 
 class StudentController extends Controller
 {
+
 
     public function marksentryform(Request $request)
     {
@@ -112,25 +114,35 @@ class StudentController extends Controller
 
 
         $users = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
-                    ->whereYear('created_at', date('Y')) // current year
-                    ->groupBy('month')
-                    ->orderBy('month')
-                    ->get();
-        
+            ->whereYear('created_at', date('Y')) // current year
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
         // Initialize an array with all months set to 0
         $monthsb = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
         ];
-        
+
         $datab = array_fill(0, 12, 0);
-        
+
         // Fill the data array with actual counts
         foreach ($users as $user) {
             $datab[$user->month - 1] = $user->count;
         }
-        
-        
+
+
 
         // $datasets = [
         //     [

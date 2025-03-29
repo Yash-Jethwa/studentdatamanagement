@@ -40,8 +40,8 @@
   <link rel="stylesheet" href="/css/style.css">
 
   @yield('stylecss')
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -74,19 +74,41 @@
         </div>
       </div>
     </div>
+
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+
+    
+    <div id="chatbot-icon">🗨️</div>
   
 
-  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <div id="chatbot-container" class="hidden">
+      <div id="chatbot-header">
+        <span>AI CHATBOT</span>
+        <button id="close-btn">&times;</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+      </div>
+      <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask Anything..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+
+
+
 
       <div class="container">
         <div class="d-flex align-items-center">
 
 
-             <div class="site-logo">
+          <div class="site-logo">
             <a href="{{ route('welcome') }}" class="d-block">
               <img src="/images/logo.png" alt="Image" class="img-fluid">
             </a>
-              </div>
+          </div>
 
           @yield('navbar')
 
@@ -125,7 +147,7 @@
       </div>
     @endif
 
-  </header>
+    </header>
 
 
 
@@ -136,10 +158,26 @@
     @yield('main')
 
 
+    <!-- <div id="chatbot-icon">🗨️</div>
+
+    <div id="chatbot-container" class="hidden">
+      <div id="chatbot-header">
+        <span>AI CHATBOT</span>
+        <button id="close-btn">&times;</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+      </div>
+      <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask Anything..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div> -->
 
 
 
-    
+
+
     <div class="footer">
       <div class="container">
         <div class="row">
@@ -223,6 +261,8 @@
   <script src="/js/jquery.mb.YTPlayer.min.js"></script>
 
   <script src="/js/main.js"></script>
+  <script src="/js/deepseek.js"></script>
+
 
   <script src="https://www.w3schools.com/lib/w3.js"></script>
 
