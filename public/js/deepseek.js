@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function getBotResponse(userMessage) {
-        const apiKey = "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"; // Replace with your actual API key
+        const apiKey = "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"; // Replace with your actual API key
         const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
 
         try {

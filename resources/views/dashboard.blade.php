@@ -50,13 +50,6 @@
                 <li>
                     <a href="{{ route('home')}}" class="nav-link text-left">Home</a>
                 </li>
-                <!-- <li class="has-children">
-                                  <a href="about.html" class="nav-link text-left">About Us</a>
-                                  <ul class="dropdown">
-                                  <li><a href="teachers.html">Our Teachers</a></li>
-                                  <li><a href="about.html">Our School</a></li>
-                                  </ul>
-                                  </li> -->
                 <li>
                     <a href="{{ route('studentform') }}" class="nav-link text-left">Add Student Data</a>
                 </li>
@@ -66,10 +59,13 @@
                 <li>
                     <a href="{{ route('dashboard') }}" class="nav-link text-left">Dashboard</a>
                 </li>
-                <li>
-                    <a href="{{ route('marksentryform') }}" class="nav-link text-left">Marks Entry</a>
+                <li class="has-children">
+                    <a class="nav-link text-left">Others</a>
+                    <ul class="dropdown">
+                        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+                        <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+                    </ul>
                 </li>
-            </ul>
             </ul>
         </nav>
     </div>

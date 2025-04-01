@@ -79,24 +79,23 @@
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
 
-    
-    <div id="chatbot-icon">🗨️</div>
-  
 
-    <div id="chatbot-container" class="hidden">
-      <div id="chatbot-header">
-        <span>AI CHATBOT</span>
-        <button id="close-btn">&times;</button>
-      </div>
-      <div id="chatbot-body">
-        <div id="chatbot-messages"></div>
-      </div>
-      <div id="chatbot-input-container">
-        <input type="text" id="chatbot-input" placeholder="Ask Anything..." />
-        <button id="send-btn">Send</button>
-      </div>
-    </div>
+      <div id="chatbot-icon">🗨️</div>
 
+
+      <div id="chatbot-container" class="hidden">
+        <div id="chatbot-header">
+          <span>AI CHATBOT</span>
+          <button id="close-btn">&times;</button>
+        </div>
+        <div id="chatbot-body">
+          <div id="chatbot-messages"></div>
+        </div>
+        <div id="chatbot-input-container">
+          <input type="text" id="chatbot-input" placeholder="Ask Anything..." />
+          <button id="send-btn">Send</button>
+        </div>
+      </div>
 
 
 

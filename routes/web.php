@@ -34,6 +34,7 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::view('/home', 'home')->name('home');
     Route::view('/studentform', 'studentform')->name('studentform');
     Route::view('/marksentryform', 'marksentryform')->name('marksentryform');
+    Route::view('/customchatbot', 'customchatbot')->name('customchatbot');
     
 
     Route::get('/readrecords', [StudentController::class, 'getStudents'])->name('readrecords');
