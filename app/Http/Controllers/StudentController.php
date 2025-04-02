@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-use App\Services\DeeplyService;   
+use App\Services\DeeplyService;  
 
 class StudentController extends Controller
 {
@@ -316,8 +316,8 @@ class StudentController extends Controller
             'studentstd' => 'required | integer | gt:0 | lt:13',
             'studentdob' => 'required | before:today',
             'studentrollno' => ['required', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/'],
-            'studentimage' => 'required | image|mimes:jpeg,png,jpg,gif|max:2048'
-
+            'studentimage' => 'required | image|mimes:jpeg,png,jpg,gif|max:2048',
+            'studentstatus' => 'required'
         ], [
             'studentfname.required' => 'first name is required.',
             'studentfname.min' => 'first name must be at least 3 characters.',
@@ -364,8 +364,10 @@ class StudentController extends Controller
             'studentrollno.regex' => 'Roll number must contain both letters and numbers.',
 
             'studentimage.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
-            'studentimage.max' => 'The image must not exceed 2MB in size.'
-        ]);
+            'studentimage.max' => 'The image must not exceed 2MB in size.',
+
+             'studentstatus.required'=> 'Status is required.'        
+                 ]);
 
         //  $imageName=time().'.'.$request->image->extension();
         //  $request->image->move(public_path('Studentimages'),$imageName);
@@ -386,6 +388,7 @@ class StudentController extends Controller
         $studentd->dob = $request->studentdob;
         $studentd->rollno = $request->studentrollno;
         $studentd->image = $imageName;
+        $studentd->status = $request->studentstatus;
 
         $studentd->userid = Auth::id();
 
@@ -439,7 +442,8 @@ class StudentController extends Controller
             'studentstd' => 'required | integer | gt:0 | lt:13',
             'studentdob' => 'required | before:today',
             'studentrollno' => ['required', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/'],
-            'studentimage' => 'nullable |mimes:jpeg,png,jpg|max:2048'
+            'studentimage' => 'nullable |mimes:jpeg,png,jpg|max:2048',
+            'studentstatus' => 'required'
         ], [
             'studentfname.required' => 'first name is required.',
             'studentfname.min' => 'first name must be at least 3 characters.',
@@ -486,7 +490,9 @@ class StudentController extends Controller
             'studentrollno.regex' => 'Roll number must contain both letters and numbers.',
 
             'studentimage.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
-            'studentimage.max' => 'The image must not exceed 2MB in size.'
+            'studentimage.max' => 'The image must not exceed 2MB in size.',
+
+            'studentstatus.required'=> 'Status is required.'
         ]);
 
         // Update the student record
@@ -502,6 +508,7 @@ class StudentController extends Controller
         $studentrecord->std = $request->studentstd;
         $studentrecord->dob = $request->studentdob;
         $studentrecord->rollno = $request->studentrollno;
+        $studentrecord->status = $request->studentstatus;
 
         // Handle image upload if a new image is provided
         if ($request->hasFile('studentimage')) {

@@ -33,9 +33,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::view('/icards', 'icards')->name('icards');
     Route::view('/home', 'home')->name('home');
     Route::view('/studentform', 'studentform')->name('studentform');
-    Route::view('/marksentryform', 'marksentryform')->name('marksentryform');
-    Route::view('/customchatbot', 'customchatbot')->name('customchatbot');
-    
+    Route::view('/marksentryform', 'marksentryform')->name('marksentryform');    
+    Route::view('/customchatbot', 'customchatbot')->name('customchatbot');    
 
     Route::get('/readrecords', [StudentController::class, 'getStudents'])->name('readrecords');
     Route::post('/studentform', [StudentController::class, 'add'])->name('studentform.post');
@@ -56,6 +55,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
 
     Route::post('/marksentryform', [StudentController::class,'marksentryform'])->name('marksentryform.post');
     
+    // Route::get('/kanban', [StudentController::class, 'index'])->name('kanban');
+    // Route::post('/kanban/update-order', [StudentController::class, 'updateTaskOrder'])->name('kanban.update-order');
 });
 
 

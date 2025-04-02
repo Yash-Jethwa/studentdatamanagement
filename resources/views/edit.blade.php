@@ -77,11 +77,11 @@
     </div>
 
     <!-- @if($message=Session::get('success'))
-            <div class="alert alert-success alert-dismissible fade show" style="text-align:center">
-                <strong> <h4> <i> {{$message}} </i> </h4></strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            @endif -->
+                                                    <div class="alert alert-success alert-dismissible fade show" style="text-align:center">
+                                                        <strong> <h4> <i> {{$message}} </i> </h4></strong>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                    </div>
+                                                    @endif -->
 
     <div class="site-section">
         <div class="container">
@@ -91,121 +91,156 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentfname">First Name</label>
-                        <input type="text" id="studentfname" name="studentfname" class="form-control form-control-lg"
+                        <input type="text" id="studentfname" name="studentfname"
+                            class="form-control form-control-lg @error('studentfname') is-invalid @enderror"
                             value="{{old('studentfname', $studentrecord->firstname)}}">
-                        <br><span style="color:red">@error('studentfname') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentfname') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentlname">Last Name</label>
-                        <input type="text" id="studentlname" name="studentlname" class="form-control form-control-lg"
+                        <input type="text" id="studentlname" name="studentlname"
+                            class="form-control form-control-lg @error('studentlname') is-invalid @enderror"
                             value="{{old('studentlname', $studentrecord->lastname)}}">
-                        <br><span style="color:red">@error('studentlname') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentlname') {{$message}} @enderror</span>
                     </div>
                 </div>
+
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentmname">Middle Name</label>
-                        <input type="text" id="studentmname" name="studentmname" class="form-control form-control-lg"
+                        <input type="text" id="studentmname" name="studentmname"
+                            class="form-control form-control-lg @error('studentmname') is-invalid @enderror"
                             value="{{old('studentmname', $studentrecord->middlename)}}">
-                        <br><span style="color:red">@error('studentmname') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentmname') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentemail">Email Address</label>
-                        <input type="text" id="studentemail" name="studentemail" class="form-control form-control-lg"
+                        <input type="text" id="studentemail" name="studentemail"
+                            class="form-control form-control-lg @error('studentemail') is-invalid @enderror"
                             value="{{old('studentemail', $studentrecord->email)}}">
-                        <br><span style="color:red">@error('studentemail') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentemail') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentphoneno">Phone Number</label>
-                        <input type="number" id="studentphoneno" name="studentphoneno" class="form-control form-control-lg"
+                        <input type="number" id="studentphoneno" name="studentphoneno"
+                            class="form-control form-control-lg @error('studentphoneno') is-invalid @enderror"
                             value="{{old('studentphoneno', $studentrecord->mobileno)}}">
-                        <br><span style="color:red">@error('studentphoneno') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentphoneno') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentstd">Current Standard</label>
-                        <input type="number" name="studentstd" id="studentstd" class="form-control"
+                        <input type="number" name="studentstd" id="studentstd"
+                            class="form-control form-control-lg @error('studentstd') is-invalid @enderror"
                             value="{{old('studentstd', $studentrecord->std)}}">
-                        <br><span style="color:red">@error('studentstd') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentstd') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentdob">Date Of Birth</label>
-                        <input type="date" id="studentdob" name="studentdob" class="form-control form-control-lg"
+                        <input type="date" id="studentdob" name="studentdob"
+                            class="form-control form-control-lg @error('studentdob') is-invalid @enderror"
                             value="{{old('studentdob', $studentrecord->dob)}}">
-                        <br><span style="color:red">@error('studentdob') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentdob') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentrollno">Roll Number</label>
-                        <input type="text" name="studentrollno" id="studentrollno" class="form-control"
+                        <input type="text" name="studentrollno" id="studentrollno"
+                            class="form-control form-control-lg @error('studentrollno') is-invalid @enderror"
                             value="{{old('studentrollno', $studentrecord->rollno)}}">
-                        <br><span style="color:red">@error('studentrollno') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentrollno') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentaddressline1">Current Address Line 1</label>
                         <input type="text" id="studentaddressline1" name="studentaddressline1"
-                            class="form-control form-control-lg"
+                            class="form-control form-control-lg @error('studentaddressline1') is-invalid @enderror"
                             value="{{old('studentaddressline1', $studentrecord->addressline1)}}">
-                        <br><span style="color:red">@error('studentaddressline1') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentaddressline1') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentaddressline2">Current Address Line 2</label>
-                        <input type="text" name="studentaddressline2" id="studentaddressline2" class="form-control"
+                        <input type="text" name="studentaddressline2" id="studentaddressline2"
+                            class="form-control form-control-lg @error('studentaddressline2') is-invalid @enderror"
                             value="{{old('studentaddressline2', $studentrecord->addressline2)}}">
-                        <br><span style="color:red">@error('studentaddressline2') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentaddressline2') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="studentcity">City</label>
-                        <input type="text" id="studentcity" name="studentcity" class="form-control form-control-lg"
+                        <input type="text" id="studentcity" name="studentcity"
+                            class="form-control form-control-lg @error('studentcity') is-invalid @enderror"
                             value="{{old('studentcity', $studentrecord->city)}}">
-                        <br><span style="color:red">@error('studentcity') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentcity') {{$message}} @enderror</span>
                     </div>
+
                     <div class="col-md-6 form-group">
                         <label for="studentpincode">PIN Code</label>
-                        <input type="number" name="studentpincode" id="studentpincode" class="form-control"
+                        <input type="number" name="studentpincode" id="studentpincode"
+                            class="form-control form-control-lg @error('studentpincode') is-invalid @enderror"
                             value="{{old('studentpincode', $studentrecord->pincode)}}">
-                        <br><span style="color:red">@error('studentpincode') {{$message}} @enderror</span>
-
+                        <span style="color:red">@error('studentpincode') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-md-6 form-group">
-                        <label for="studentimage">Select Photo</label>
-                        <input type="file" id="studentimage" name="studentimage" class="form-control form-control-lg"
-                            value="{{old('studentimage')}}">
-                        <br><span style="color:red">@error('studentimage') {{$message}} @enderror</span>
+                        <label for="studentstatus">Status</label>
+                        <select id="studentstatus" name="studentstatus"
+                            class="form-control form-control-lg @error('studentstatus') is-invalid @enderror">
+                            <option value="" disabled @if(!old('studentstatus', $studentrecord->status ?? null)) selected
+                            @endif>---Please Choose An Option---</option>
+                            <option value="Applied" @if(old('studentstatus', $studentrecord->status ?? null) == 'Applied')
+                            selected @endif>Applied</option>
+                            <option value="Test Given" @if(old('studentstatus', $studentrecord->status ?? null) == 'Test Given') selected @endif>Test Given</option>
+                            <option value="Test Passed" @if(old('studentstatus', $studentrecord->status ?? null) == 'Test Passed') selected @endif>Test Passed</option>
+                            <option value="Documents Verification" @if(old('studentstatus', $studentrecord->status ?? null) == 'Documents Verification') selected @endif>Documents Verification</option>
+                            <option value="Rejected" @if(old('studentstatus', $studentrecord->status ?? null) == 'Rejected')
+                            selected @endif>Rejected</option>
+                            <option value="Fees Paid" @if(old('studentstatus', $studentrecord->status ?? null) == 'Fees Paid')
+                            selected @endif>Fees Paid</option>
+                            <option value="Admitted" @if(old('studentstatus', $studentrecord->status ?? null) == 'Admitted')
+                            selected @endif>Admitted</option>
+                        </select>
+                        <span style="color:red">@error('studentstatus') {{$message}} @enderror</span>
+                        <!-- @error('studentstatus')<span class="invalid-feedback" style="color:red">{{ $message }}</span>@enderror -->
+                    </div>
 
+                    <div class="col-md-6 form-group">
+                        <label for="studentimage">Select Photo</label>
+                        <input type="file" id="studentimage" name="studentimage"
+                            class="form-control form-control-lg @error('studentimage') is-invalid @enderror"
+                            value="{{old('studentimage')}}">
+                        <span style="color:red">@error('studentimage') {{$message}} @enderror</span>
                     </div>
                 </div>
 
+                <br>
 
                 <div class="row">
                     <div class="col-12">
