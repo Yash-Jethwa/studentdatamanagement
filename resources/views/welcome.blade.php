@@ -1,9 +1,11 @@
 @extends('layout')
+
 @section('title', 'WELCOME Page')
+
 @section('headerbuttons')
   <div class="col-lg-3 text-right">
     <a href="{{ route('login') }}" class="small btn btn-primary mr-3"><span class="icon-unlock-alt"></span> Log In</a>
-    <a href="{{ route('register')}}" class="small btn btn-primary px-4 py-2 rounded-0"><span class="icon-users"></span>
+    <a href="{{ route('register')}}" class="small btn btn-primary px-4 py-2 rounded-1"><span class="icon-users"></span>
     Register</a>
   </div>
 @endsection
@@ -35,7 +37,7 @@
     <div class="container">
       <div class="row align-items-center">
       <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-        <h1>You Can Do Anything</h1>
+        <h1>Complete Work Easily</h1>
       </div>
       </div>
     </div>
@@ -98,6 +100,7 @@
 
   <div class="site-section">
     <div class="container">
+
 
 
     <div class="row mb-5 justify-content-center text-center">
@@ -259,7 +262,6 @@
 
     </div>
   </div>
-
 
   <div class="section-bg style-1" style="background-image: url('images/about_1.jpg');">
     <div class="container">

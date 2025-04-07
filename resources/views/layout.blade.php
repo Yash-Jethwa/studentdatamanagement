@@ -41,7 +41,6 @@
 
   @yield('stylecss')
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -123,10 +122,9 @@
           </div>
 
 
-
-
         </div>
       </div>
+
 
       @if($message = Session::get('success'))
       <div class="alert alert-success alert-dismissible fade show" style="text-align:center">
@@ -147,8 +145,6 @@
     @endif
 
     </header>
-
-
 
 
 
@@ -263,35 +259,14 @@
   <script src="/js/deepseek.js"></script>
 
 
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <!-- <script src="https://www.w3schools.com/lib/w3.js"></script> -->
 
-  <script>
-    const clickableImages = document.querySelectorAll('.clickable-image');
-    const imageContainer = document.getElementById('imageContainer');
-    const fullSizeImage = document.getElementById('fullSizeImage');
-    const closeButton = document.getElementById('closeButton');
 
-    clickableImages.forEach(image => {
-      image.addEventListener('click', () => {
-        fullSizeImage.src = image.getAttribute('data-src');
-        imageContainer.style.display = 'flex';
-      });
-    });
-
-    closeButton.addEventListener('click', () => {
-      imageContainer.style.display = 'none';
-    });
-
-    imageContainer.addEventListener('click', (event) => {
-      if (event.target === imageContainer) {
-        imageContainer.style.display = 'none';
-      }
-    });
-
-  </script>
+  @yield('scriptcode')
 
   @yield('ajaxcode')
 
 </body>
 
 </html>
+<!--inside public folder , js/deepseek.js & css/style.css -->

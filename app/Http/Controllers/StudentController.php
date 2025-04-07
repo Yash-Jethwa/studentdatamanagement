@@ -11,10 +11,45 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
-use App\Services\DeeplyService;  
+use App\Services\DeeplyService;
 
 class StudentController extends Controller
 {
+
+    public function kanban()
+    {
+        // Group students by their status in the specified order
+        $statuses = [
+            'Applied',
+            'Test Given',
+            'Test Passed',
+            'Documents Verification',
+            'Rejected',
+            'Fees Paid',
+            'Admitted'
+        ];
+        
+        $studentsByStatus = [];
+        
+        foreach ($statuses as $status) {
+            $studentsByStatus[$status] = StudentData::where('status', $status)
+                ->orderBy('rollno')
+                ->get();
+        }
+        
+        return view('student-kanban', compact('studentsByStatus', 'statuses'));
+    }
+    
+    public function updateStatus(Request $request, $rollno)
+    {
+        $student = StudentData::where('rollno', $rollno)->firstOrFail();
+        $student->status = $request->status;
+        $student->save();
+        
+        return response()->json(['success' => true]);
+    }
+
+
 
 
     public function marksentryform(Request $request)
@@ -30,7 +65,7 @@ class StudentController extends Controller
             'sanskritmarks' => 'required | integer | gt:-1 | lt:101',
             'hindimarks' => 'required | integer | gt:-1 | lt:101',
             'gujaratimarks' => 'required | integer | gt:-1 | lt:101',
-            'computermarks' => 'required | integer | gt:-1 | lt:101',
+            'computermarks' => 'required | integer | gt:-1 | lt:101'
 
         ], [
 
@@ -76,7 +111,6 @@ class StudentController extends Controller
             'computermarks.integer' => 'Marks Of Computer must be a number.',
             'computermarks.gt' => 'Marks Of Computer must be greater than or equal to 0.',
             'computermarks.lt' => 'Marks Of Computer must be less than 101.'
-
         ]);
 
 
@@ -97,6 +131,7 @@ class StudentController extends Controller
 
     }
 
+
     function dashboard()
     {
         $data = Studentdata::select('rollno', 'created_at')->get();
@@ -110,7 +145,6 @@ class StudentController extends Controller
                 return Carbon::parse($item->created_at)->month == $i; // Filter data for the current month
             })->count();
         }
-
 
 
         $users = User::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
@@ -143,7 +177,6 @@ class StudentController extends Controller
         }
 
 
-
         // $datasets = [
         //     [
         //         'label' => 'Users',
@@ -155,15 +188,12 @@ class StudentController extends Controller
 
 
 
-
-
         $totalstudentsystem = Studentdata::count();
 
         $data1 = Studentdata::where('userid', Auth::id())->latest()->get();
         $totalyrstudent = $data1->count();
 
         $totalusersystem = User::count();
-
 
 
         // return view('dashboard', compact('months', 'monthCount','monthsb','monthCountb'));
@@ -186,6 +216,7 @@ class StudentController extends Controller
     }
 
 
+
     public function logout(Request $request)
     {
         Auth::logout();  // Log the user out
@@ -203,16 +234,25 @@ class StudentController extends Controller
     {
         // Validate the request data
         $validated = $request->validate([
-            'email' => 'required|email',
+            'email' => 'required | email',
             'password' => 'required | min:8',
         ], [
-            'email.required' => 'User Email Address is required.',
-            'email.email' => 'Please Enter a Valid User Email Address.',
+            'email.required' => 'Email ID is required.',
+            'email.email' => 'Please Enter a Valid Email ID Syntax.',
 
-            'password.required' => 'User Password is required.',
-            'password.min' => 'User Password Must Be Atleast 8 Characters.'
+            'password.required' => 'Password is required.',
+            'password.min' => 'Please Enter Minimum 8 Characters.'
 
         ]);
+
+        $user = User::where('email', $validated['email'])->first();
+
+        if (!$user) {
+            // Email not found
+            return back()->withErrors([
+                'email' => 'This Email ID is not registered , Please Register First.',
+            ]);
+        }
 
         // Attempt to authenticate the user
         if (Auth::attempt($validated)) {
@@ -227,12 +267,13 @@ class StudentController extends Controller
 
             // Redirect to the intended page with a success message
             return redirect()->intended('home')->withSuccess('Logged in Successfully!!!');
-        }
+        } else {
 
-        // If authentication fails, return with an error message
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            // If authentication fails, return with an error message
+            return back()->withErrors([
+                'password' => 'Entered Password is Wrong , Please Enter Valid Password.'
+            ]);
+        }
     }
     //     function login(Request $request){
 
@@ -268,45 +309,59 @@ class StudentController extends Controller
 //     }
 
 
+
     function register(Request $request)
     {
         // Validate the request data
         $validated = $request->validate([
-            'name' => 'required',
+            'firstname' => 'required | min:3 | max:20',
+            'lastname' => 'required | min:3 | max:20',
             'email' => 'required | email | unique:users,email', // Ensure email is unique
             'password' => 'required | min:8 | confirmed', // Add password length validation
+            'password_confirmation' => 'required | min:8'
         ], [
-            'name.required' => 'User name is required.',
+            'firstname.required' => 'First Name is required.',
+            'firstname.min' => 'First Name Must Be Atleast 3 Characters.',
+            'firstname.max' => 'First Name must not exceed 20 characters.',
 
-            'email.required' => 'User Email Address is required.',
-            'email.email' => 'Please Enter a Valid User Email Address.',
-            'email.unique' => 'This Email Address Has Already Been Taken.',
+            'lastname.required' => 'Last Name is required.',
+            'lastname.min' => 'Last Name Must Be Atleast 3 Characters.',
+            'lastname.max' => 'Last Name must not exceed 20 characters.',
 
-            'password.required' => 'User Password is required.',
-            'password.min' => 'User Password Must Be Atleast 8 Characters.',
-            'password.confirmed' => 'Password Confirmation Does Not Match.'
+            'email.required' => 'Email Address is required.',
+            'email.email' => 'Please Enter a Valid Email ID.',
+            'email.unique' => 'This Email ID Has Already Been Taken.',
 
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password Must Be Atleast 8 Characters.',
+            'password.confirmed' => 'Password Does Not Match.',
+
+            'password_confirmation.required' => 'Confirm Password is required.',
+            'password_confirmation.min' => 'Also, Confirm Password Must Be Atleast 8 Characters.'
         ]);
 
         // Create a new user
         $user = new User();
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->password = Hash::make($request->password); // Hash the password
         $user->save();
 
         // Redirect to the login page with a success message
-        return redirect()->route('register')->withSuccess('User registration Done successfully!!!');
+        return redirect()->route('register')->withSuccess('User Registration Done successfully!!!');
     }
+
+
 
     function add(Request $request)
     {
 
         $request->validate([
 
-            'studentfname' => 'required | min:3 | max:15',
-            'studentmname' => 'required | min:1 | max:15',
-            'studentlname' => 'required | min:3 | max:15',
+            'studentfname' => 'required | min:3 | max:20',
+            'studentmname' => 'required | min:1 | max:20',
+            'studentlname' => 'required | min:3 | max:20',
             'studentaddressline1' => 'required | min:5 | max:50',
             'studentaddressline2' => 'required | min:5 | max:50',
             'studentcity' => 'required | min:3 | max:20',
@@ -319,17 +374,17 @@ class StudentController extends Controller
             'studentimage' => 'required | image|mimes:jpeg,png,jpg,gif|max:2048',
             'studentstatus' => 'required'
         ], [
-            'studentfname.required' => 'first name is required.',
-            'studentfname.min' => 'first name must be at least 3 characters.',
-            'studentfname.max' => 'first name must not exceed 15 characters.',
+            'studentfname.required' => 'First Name is required.',
+            'studentfname.min' => 'First Name must be at least 3 characters.',
+            'studentfname.max' => 'First Name must not exceed 20 characters.',
 
-            'studentmname.required' => 'middle name is required.',
-            'studentmname.min' => 'middle name must be at least 1 character.',
-            'studentmname.max' => 'middle name must not exceed 15 characters.',
+            'studentmname.required' => 'Middle Name is required.',
+            'studentmname.min' => 'Middle Name must be at least 1 character.',
+            'studentmname.max' => 'Middle Name must not exceed 20 characters.',
 
-            'studentlname.required' => 'last name is required.',
-            'studentlname.min' => 'last name must be at least 3 characters.',
-            'studentlname.max' => 'last name must not exceed 15 characters.',
+            'studentlname.required' => 'Last Name is required.',
+            'studentlname.min' => 'Last Name must be at least 3 characters.',
+            'studentlname.max' => 'Last Name must not exceed 20 characters.',
 
             'studentaddressline1.required' => 'Address Line 1 is required.',
             'studentaddressline1.min' => 'Address Line 1 must be at least 5 characters.',
@@ -350,24 +405,24 @@ class StudentController extends Controller
             'studentphoneno.digits' => 'Phone number must be exactly 10 digits.',
 
             'studentemail.required' => 'Email Address is required.',
-            'studentemail.email' => 'Please enter a valid email address.',
+            'studentemail.email' => 'Please enter a valid Email address.',
 
             'studentstd.required' => 'Standard is required.',
             'studentstd.integer' => 'Standard must be a number.',
             'studentstd.gt' => 'Standard must be greater than 0.',
             'studentstd.lt' => 'Standard must be less than 13.',
 
-            'studentdob.required' => 'Date of Birth is required.',
-            'studentdob.before' => 'Date of Birth must be a date before today.',
+            'studentdob.required' => 'Date Of Birth is required.',
+            'studentdob.before' => 'Date Of Birth must be a date before today.',
 
-            'studentrollno.required' => 'Roll number is required.',
-            'studentrollno.regex' => 'Roll number must contain both letters and numbers.',
+            'studentrollno.required' => 'Roll Number is required.',
+            'studentrollno.regex' => 'Roll Number must contain both letters and numbers.',
 
             'studentimage.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
             'studentimage.max' => 'The image must not exceed 2MB in size.',
 
-             'studentstatus.required'=> 'Status is required.'        
-                 ]);
+            'studentstatus.required' => 'Status is required.'
+        ]);
 
         //  $imageName=time().'.'.$request->image->extension();
         //  $request->image->move(public_path('Studentimages'),$imageName);
@@ -389,18 +444,18 @@ class StudentController extends Controller
         $studentd->rollno = $request->studentrollno;
         $studentd->image = $imageName;
         $studentd->status = $request->studentstatus;
-
         $studentd->userid = Auth::id();
 
         $studentd->save();
         return back()->withSuccess('Student Data Inserted Successfully!!!');
     }
-
     //  if($request){
     //      return "sucess";
     //  }else{
     //      return "failed";
     //  }
+
+
 
     public function edit($rollno)
     {
@@ -416,6 +471,7 @@ class StudentController extends Controller
         // Return the edit view with the student record
         return view('edit', ['studentrecord' => $studentrecord]);
     }
+
 
 
     public function updaterecord(Request $request, $rollno)
@@ -445,17 +501,17 @@ class StudentController extends Controller
             'studentimage' => 'nullable |mimes:jpeg,png,jpg|max:2048',
             'studentstatus' => 'required'
         ], [
-            'studentfname.required' => 'first name is required.',
-            'studentfname.min' => 'first name must be at least 3 characters.',
-            'studentfname.max' => 'first name must not exceed 15 characters.',
+            'studentfname.required' => 'First Name is required.',
+            'studentfname.min' => 'First Name must be at least 3 characters.',
+            'studentfname.max' => 'First Name must not exceed 15 characters.',
 
-            'studentmname.required' => 'middle name is required.',
-            'studentmname.min' => 'middle name must be at least 1 character.',
-            'studentmname.max' => 'middle name must not exceed 15 characters.',
+            'studentmname.required' => 'Middle Name is required.',
+            'studentmname.min' => 'Middle Name must be at least 1 character.',
+            'studentmname.max' => 'Middle Name must not exceed 15 characters.',
 
-            'studentlname.required' => 'last name is required.',
-            'studentlname.min' => 'last name must be at least 3 characters.',
-            'studentlname.max' => 'last name must not exceed 15 characters.',
+            'studentlname.required' => 'Last Name is required.',
+            'studentlname.min' => 'Last Name must be at least 3 characters.',
+            'studentlname.max' => 'Last Name must not exceed 15 characters.',
 
             'studentaddressline1.required' => 'Address Line 1 is required.',
             'studentaddressline1.min' => 'Address Line 1 must be at least 5 characters.',
@@ -472,27 +528,27 @@ class StudentController extends Controller
             'studentpincode.required' => 'Pincode is required.',
             'studentpincode.digits' => 'Pincode must be exactly 6 digits.',
 
-            'studentphoneno.required' => 'Phone number is required.',
-            'studentphoneno.digits' => 'Phone number must be exactly 10 digits.',
+            'studentphoneno.required' => 'Phone Number is required.',
+            'studentphoneno.digits' => 'Phone Number must be exactly 10 digits.',
 
             'studentemail.required' => 'Email Address is required.',
-            'studentemail.email' => 'Please enter a valid email address.',
+            'studentemail.email' => 'Please enter a valid Email address.',
 
             'studentstd.required' => 'Standard is required.',
             'studentstd.integer' => 'Standard must be a number.',
             'studentstd.gt' => 'Standard must be greater than 0.',
             'studentstd.lt' => 'Standard must be less than 13.',
 
-            'studentdob.required' => 'Date of Birth is required.',
-            'studentdob.before' => 'Date of Birth must be a date before today.',
+            'studentdob.required' => 'Date Of Birth is required.',
+            'studentdob.before' => 'Date Of Birth must be a date before today.',
 
-            'studentrollno.required' => 'Roll number is required.',
-            'studentrollno.regex' => 'Roll number must contain both letters and numbers.',
+            'studentrollno.required' => 'Roll Number is required.',
+            'studentrollno.regex' => 'Roll Number must contain both letters and numbers.',
 
             'studentimage.mimes' => 'The image must be a file of type: jpeg, png, jpg.',
             'studentimage.max' => 'The image must not exceed 2MB in size.',
 
-            'studentstatus.required'=> 'Status is required.'
+            'studentstatus.required' => 'Status is required.'
         ]);
 
         // Update the student record
@@ -523,6 +579,8 @@ class StudentController extends Controller
         return back()->withSuccess('Student Data Updated Successfully!!!');
     }
 
+
+
     public function getStudents()
     {
         // $students = \App\Models\Studentdata::all();
@@ -532,6 +590,8 @@ class StudentController extends Controller
         return view('readrecords', ['data' => $students]);
         // return view('readrecords',['data'=>Studentdata::latest()->get()]);
     }
+
+
 
     public function destroy($rollno)
     {
@@ -555,6 +615,8 @@ class StudentController extends Controller
         }
     }
 
+
+
     public function showIcard($rollno)
     {
         // Fetch the student record by rollno
@@ -568,6 +630,8 @@ class StudentController extends Controller
         return view('icard', ['studentrecord' => $studentrecord]);
     }
 
+
+
     public function showIcards()
     {
         $students = Studentdata::where('userid', Auth::id())->latest()->get();
@@ -578,6 +642,8 @@ class StudentController extends Controller
 
         return view('icards', ['students' => $students]);
     }
+
+
 
     public function downloadIcard($rollno)
     {
@@ -659,6 +725,7 @@ class StudentController extends Controller
         return view('readrecords', ['data' => $results, 'searched' => $request->search]);
     }
 
+
     public function updateStudent(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -699,7 +766,6 @@ class StudentController extends Controller
             'city.required' => 'City is required.',
             'city.min' => 'City must be at least 3 characters.',
             'city.max' => 'City must not exceed 20 characters.',
-
             'pincode.required' => 'Pincode is required.',
             'pincode.digits' => 'Pincode must be exactly 6 digits.',
 
@@ -743,5 +809,5 @@ class StudentController extends Controller
 
         return response()->json(['success' => true]);
     }
-}
 
+}

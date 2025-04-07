@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function getBotResponse(userMessage) {
-        const apiKey = "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"; // Replace with your actual API key
+        const apiKey = "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"; // Replace with your actual API key
         const apiUrl = "https://openrouter.ai/api/v1/chat/completions";
 
         try {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "X-Title": "YOUR_APP_NAME" // Required by OpenRouter
                 },
                 body: JSON.stringify({
-                    model: "deepseek/deepseek-chat-v3-0324:free", // Note the provider prefix
+                    model: "deepseek/deepseek-r1:free", // Note the provider prefix
                     messages: [{ role: "user", content: userMessage }],
                     max_tokens: 150
                 })
@@ -76,3 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+// https://openrouter.ai/api/v1/chat/completions
+// deepseek/deepseek-chat-v3-0324:free

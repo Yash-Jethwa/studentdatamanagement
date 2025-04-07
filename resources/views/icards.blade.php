@@ -105,5 +105,4 @@
 
 </html>
 
-
 <!-- <img src="{{ public_path('Studentimages/'.$student->image) }}" style="width:100px; height:100px ;"> -->

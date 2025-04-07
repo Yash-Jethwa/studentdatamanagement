@@ -39,8 +39,9 @@
                 <li class="has-children">
                     <a class="nav-link text-left">Others</a>
                     <ul class="dropdown">
-                        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+                        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
                         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+                        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
                     </ul>
                 </li>
             </ul>
@@ -77,14 +78,16 @@
     </div>
 
     <!-- @if($message=Session::get('success'))
-                                                    <div class="alert alert-success alert-dismissible fade show" style="text-align:center">
-                                                        <strong> <h4> <i> {{$message}} </i> </h4></strong>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                                    </div>
-                                                    @endif -->
+                                                                    <div class="alert alert-success alert-dismissible fade show" style="text-align:center">
+                                                                        <strong> <h4> <i> {{$message}} </i> </h4></strong>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                                    </div>
+                                                                    @endif -->
 
     <div class="site-section">
         <div class="container">
+
+
             <form action="/edit/{{$studentrecord->rollno}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -248,6 +251,8 @@
                     </div>
                 </div>
             </form>
+
+
         </div>
     </div>
 @endsection

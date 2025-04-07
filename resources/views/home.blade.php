@@ -10,7 +10,6 @@
     <button type="submit" class="small btn btn-danger">LOGOUT</button>
     </form>
   </div>
-
 @endsection
 
 
@@ -33,8 +32,9 @@
       <li class="has-children">
       <a class="nav-link text-left">Others</a>
       <ul class="dropdown">
-        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
       </ul>
       </li>
     </ul>

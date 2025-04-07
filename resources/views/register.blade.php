@@ -16,7 +16,7 @@
     <div class="container">
     <div class="row align-items-end justify-content-center text-center">
       <div class="col-lg-7">
-      <h2 class="mb-0">Register</h2>
+      <h2 class="mb-0">Register / Sign UP</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
       </div>
     </div>
@@ -27,12 +27,13 @@
     <div class="container">
     <a href="{{ route('welcome') }}">Welcome</a>
     <span class="mx-3 icon-keyboard_arrow_right"></span>
-    <a href="{{ route('register')}}"> <span class="current">Register</span></a>
+    <a href="{{ route('register')}}"> <span class="current">Register / Sign UP</span></a>
     </div>
   </div>
 
   <div class="site-section">
     <div class="container">
+
 
 
     <div class="row justify-content-center">
@@ -42,44 +43,77 @@
         @csrf
 
         <div class="row">
-
         <div class="col-md-12 form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" class="form-control form-control-lg" value="{{ old('name') }}">
-          <br><span style="color:red">@error('name') {{ $message }} @enderror</span>
-
+          <label for="firstname">First Name</label>
+          <input type="text" id="firstname" name="firstname"
+          class="form-control form-control-lg @error('firstname') is-invalid @enderror"
+          value="{{ old('firstname') }}">
+          <span style="color:red">@error('firstname') {{ $message }} @enderror</span>
         </div>
+        </div>
+
+        <br>
+
+        <div class="row">
         <div class="col-md-12 form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-control form-control-lg"
-          value="{{ old('email') }}">
-          <br><span style="color:red">@error('email') {{ $message }} @enderror</span>
-
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" name="lastname"
+          class="form-control form-control-lg @error('lastname') is-invalid @enderror"
+          value="{{ old('lastname') }}">
+          <span style="color:red">@error('lastname') {{ $message }} @enderror</span>
         </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+        <div class="col-md-12 form-group">
+          <label for="email">Email ID</label>
+          <input type="text" id="email" name="email"
+          class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{ old('email') }}">
+          <span style="color:red">@error('email') {{ $message }} @enderror</span>
+        </div>
+        </div>
+
+        <br>
+
+        <div class="row">
         <div class="col-md-12 form-group">
           <label for="pword">Password</label>
-          <input type="password" id="pword" name="password" class="form-control form-control-lg"
+          <input type="password" id="pword" name="password"
+          class="form-control form-control-lg @error('password') is-invalid @enderror"
           value="{{ old('password') }}">
-          <br><span style="color:red">@error('password') {{ $message }} @enderror</span>
-
+          <span style="color:red">@error('password') {{ $message }} @enderror</span>
         </div>
+        </div>
+
+        <br>
+
+        <div class="row">
         <div class="col-md-12 form-group">
-          <label for="pword2">Re-type Password</label>
-          <input type="password" id="pword2" name="password_confirmation" class="form-control form-control-lg"
+          <label for="pword2">Confirm Password</label>
+          <input type="password" id="pword2" name="password_confirmation"
+          class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror"
           value="{{ old('password_confirmation') }}">
-          <br><span style="color:red">@error('password_confirmation') {{ $message }} @enderror</span>
+          <span style="color:red">@error('password_confirmation') {{ $message }} @enderror</span>
+        </div>
+        </div>
 
-        </div>
-        </div>
+        <br>
+
         <div class="row">
         <div class="col-12">
           <input type="submit" value="Register" class="btn btn-primary btn-lg px-5">
         </div>
         </div>
-
+      </form>
 
       </div>
     </div>
+
+
+
     </div>
   </div>
+
 @endsection

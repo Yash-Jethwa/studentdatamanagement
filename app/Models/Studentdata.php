@@ -27,7 +27,8 @@ class Studentdata extends Model
         'pincode',
         'mobileno',
         'email',
-        'dob'
+        'dob',
+        'status'
     ];
    
 }

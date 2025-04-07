@@ -55,8 +55,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
 
     Route::post('/marksentryform', [StudentController::class,'marksentryform'])->name('marksentryform.post');
     
-    // Route::get('/kanban', [StudentController::class, 'index'])->name('kanban');
-    // Route::post('/kanban/update-order', [StudentController::class, 'updateTaskOrder'])->name('kanban.update-order');
+    Route::get('/student-kanban', [StudentController::class, 'kanban'])->name('student.kanban');
+    Route::post('/student-kanban/{rollno}', [StudentController::class, 'updatestatus'])->name('student.kanban.update');
 });
 
 

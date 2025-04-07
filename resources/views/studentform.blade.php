@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'STUDENTFORM PAGE')
+@section('title', 'ADDSTUDENTFORM PAGE')
 
 @section('logoutbtn')
   <div class="col-lg-3 text-right">
@@ -30,8 +30,9 @@
       <li class="has-children">
       <a class="nav-link text-left">Others</a>
       <ul class="dropdown">
-        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
       </ul>
       </li>
     </ul>
@@ -41,7 +42,6 @@
 
 
 @section('main')
-
 
   <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('images/bg_1.jpg')">
     <div class="container">
@@ -70,9 +70,10 @@
     </div>
     @endif -->
 
-
   <div class="site-section">
     <div class="container">
+
+
 
     <form action="/studentform" method="post" enctype="multipart/form-data">
       @csrf
@@ -132,7 +133,6 @@
         class="form-control form-control-lg @error('studentstd') is-invalid @enderror"
         value="{{old('studentstd')}}">
         <span style="color:red">@error('studentstd') {{$message}} @enderror</span>
-
       </div>
       </div>
 
@@ -153,7 +153,6 @@
         class="form-control form-control-lg @error('studentrollno') is-invalid @enderror"
         value="{{old('studentrollno')}}">
         <span style="color:red">@error('studentrollno') {{$message}} @enderror</span>
-
       </div>
       </div>
 
@@ -235,8 +234,12 @@
       </div>
       </div>
     </form>
+
+
+
     </div>
   </div>
+
 @endsection
 
 

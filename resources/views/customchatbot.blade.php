@@ -13,7 +13,6 @@
 @endsection
 
 
-
 @section('navbar')
   <div class="mr-auto">
     <nav class="site-navigation position-relative text-right" role="navigation">
@@ -33,8 +32,9 @@
       <li class="has-children">
       <a class="nav-link text-left">Others</a>
       <ul class="dropdown">
-        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
       </ul>
       </li>
     </ul>
@@ -69,18 +69,15 @@
     <div class="container">
 
 
-<div>
+    <div>
+      <iframe
+      src="https://cdn.botpress.cloud/webchat/v2.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/03/31/07/20250331072056-6FDB3P9Z.json"
+      width="100%" height="600" frameborder="0" allowfullscreen>
+      </iframe>
+    </div>
 
-  <iframe
-  src="https://cdn.botpress.cloud/webchat/v2.3/shareable.html?configUrl=https://files.bpcontent.cloud/2025/03/31/07/20250331072056-6FDB3P9Z.json"
-  width="100%" height="550" frameborder="0" allowfullscreen>
-</iframe>
-
-</div>
 
     </div>
   </div>
-
-
 
 @endsection

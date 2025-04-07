@@ -1,7 +1,5 @@
 @extends('layout')
 
-
-
 @section('title', 'DASHBOARD PAGE')
 
 @section('stylecss')
@@ -30,6 +28,8 @@
         }
     </style>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 @endsection
 
 @section('logoutbtn')
@@ -40,7 +40,6 @@
         </form>
     </div>
 @endsection
-
 
 
 @section('navbar')
@@ -62,16 +61,15 @@
                 <li class="has-children">
                     <a class="nav-link text-left">Others</a>
                     <ul class="dropdown">
-                        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+                        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
                         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+                        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </div>
 @endsection
-
-
 
 
 @section('main')
@@ -152,13 +150,13 @@
             </div>
             <br><br><br>
 
-            <!-- //////////////////////////////////////////////////////////////////////////////// -->
-
 
 
         </div>
     </div>
+@endsection
 
+@section('scriptcode')
 
     <script>
         // Pass PHP data to JavaScript
@@ -249,6 +247,5 @@
         });
 
     </script>
-
 
 @endsection

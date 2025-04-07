@@ -3,9 +3,11 @@
 @section('csrftoken')
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- theme font for this page only -->
 @endsection
 
 @section('stylecss')
+
   <style>
     td {
     border-bottom: 1px solid gray;
@@ -179,6 +181,7 @@
     margin-top: 5px;
     }
   </style>
+
 @endsection
 
 @section('logoutbtn')
@@ -209,8 +212,9 @@
       <li class="has-children">
       <a class="nav-link text-left">Others</a>
       <ul class="dropdown">
-        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
+        <li><a href="{{ route('student.kanban') }}">KanBan View</a></li>
         <li><a href="{{ route('marksentryform') }}">Marks Entry</a></li>
+        <li><a href="{{ route('customchatbot') }}">Custom ChatBot</a></li>
       </ul>
       </li>
     </ul>
@@ -219,11 +223,12 @@
 @endsection
 
 @section('main')
+
   <div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('images/bg_1.jpg')">
     <div class="container">
     <div class="row align-items-end">
       <div class="col-lg-7">
-      <h2 class="mb-0">Read Student Data Records</h2>
+      <h2 class="mb-0">Read Students Data Records</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
       </div>
     </div>
@@ -387,8 +392,8 @@
     </div>
     </div>
   </div>
-@endsection
 
+@endsection
 
 
 @section('ajaxcode')
@@ -477,6 +482,37 @@
     });
   </script>
 
+@endsection
+
+@section('scriptcode')
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    const clickableImages = document.querySelectorAll('.clickable-image');
+    const imageContainer = document.getElementById('imageContainer');
+    const fullSizeImage = document.getElementById('fullSizeImage');
+    const closeButton = document.getElementById('closeButton');
+
+    clickableImages.forEach(image => {
+    image.addEventListener('click', () => {
+      fullSizeImage.src = image.getAttribute('data-src');
+      imageContainer.style.display = 'flex';
+    });
+    });
+
+    closeButton.addEventListener('click', () => {
+    imageContainer.style.display = 'none';
+    });
+
+    imageContainer.addEventListener('click', (event) => {
+    if (event.target === imageContainer) {
+      imageContainer.style.display = 'none';
+    }
+    });
+
+  </script>
+
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 @endsection
