@@ -25,7 +25,17 @@ Route::middleware(['guest', 'preventBackHistory'])->group(function () {
     // Route::view('/test', 'test')->name('test');
 
     Route::post('/login', [StudentController::class, 'login'])->name('login.post'); // POST route for handling login
-    Route::post('/register', [StudentController::class, 'register'])->name('register.post'); // POST route for handling registration
+    Route::post('/register', [StudentController::class, 'register'])->name('register.post');
+    
+// Password Reset Routes...
+Route::get('password/reset', [StudentController::class, 'showLinkRequestForm'])
+     ->name('password.request');
+Route::post('password/email', [StudentController::class, 'sendResetLinkEmail'])
+     ->name('password.email');
+Route::get('password/reset/{token}', [StudentController::class, 'showResetForm'])
+     ->name('password.reset');
+Route::post('password/reset', [StudentController::class, 'reset'])
+     ->name('password.update');
 });
 
 // Routes for authenticated users
@@ -33,8 +43,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::view('/icards', 'icards')->name('icards');
     Route::view('/home', 'home')->name('home');
     Route::view('/studentform', 'studentform')->name('studentform');
-    Route::view('/marksentryform', 'marksentryform')->name('marksentryform');    
-    Route::view('/customchatbot', 'customchatbot')->name('customchatbot');    
+    Route::view('/marksentryform', 'marksentryform')->name('marksentryform');
+    Route::view('/customchatbot', 'customchatbot')->name('customchatbot');
 
     Route::get('/readrecords', [StudentController::class, 'getStudents'])->name('readrecords');
     Route::post('/studentform', [StudentController::class, 'add'])->name('studentform.post');
@@ -51,10 +61,10 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
 
     Route::post('/update-student', [StudentController::class, 'updateStudent'])->name('update.student');
 
-    Route::get('/dashboard', [StudentController::class,'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('dashboard');
 
-    Route::post('/marksentryform', [StudentController::class,'marksentryform'])->name('marksentryform.post');
-    
+    Route::post('/marksentryform', [StudentController::class, 'marksentryform'])->name('marksentryform.post');
+
     Route::get('/student-kanban', [StudentController::class, 'kanban'])->name('student.kanban');
     Route::post('/student-kanban/{rollno}', [StudentController::class, 'updatestatus'])->name('student.kanban.update');
 });

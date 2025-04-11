@@ -68,6 +68,14 @@
         <br>
 
         <div class="row">
+        <div class="col-md-12">
+          <a href="{{ route('password.request')}}"> <span class="current">Forgot Password ?</span></a>
+        </div>
+        </div>
+
+        <br>
+
+        <div class="row">
         <div class="col-12">
           <input type="submit" value="Log In" class="btn btn-primary btn-lg px-5">
         </div>
