@@ -16,10 +16,45 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 
 class StudentController extends Controller
 {
+    public function showOtpForm()
+    {
+        return view('verify-OTP');
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|numeric',
+        ]);
+
+        if ($request->otp == Session::get('otp')) {
+            $userData = Session::get('pending_user');
+
+            // Create and save user
+            $user = new User();
+            $user->firstname = $userData['firstname'];
+            $user->lastname = $userData['lastname'];
+            $user->email = $userData['email'];
+            $user->password = Hash::make($userData['password']);
+            $user->save();
+
+            // Clear session data
+            Session::forget('otp');
+            Session::forget('pending_user');
+
+            return redirect()->route('login')->with('success', 'Registration complete! You can now login.');
+        }
+
+        return back()->with('error', 'Invalid OTP. Please try again.');
+    }
+
+
     public function showLinkRequestForm()
     {
         return view('email');
@@ -27,7 +62,10 @@ class StudentController extends Controller
 
     public function sendResetLinkEmail(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate(['email' => 'required|email'], [
+            'email.required' => 'Email ID is required.',
+            'email.email' => 'Please Enter A Valid Email ID.'
+        ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -37,8 +75,8 @@ class StudentController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
     public function showResetForm(Request $request)
@@ -75,8 +113,8 @@ class StudentController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withErrors(['email' => __($status)]);
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withErrors(['email' => __($status)]);
     }
 
 
@@ -104,7 +142,7 @@ class StudentController extends Controller
         return view('student-kanban', compact('studentsByStatus', 'statuses'));
     }
 
-    
+
 
     public function updateStatus(Request $request, $rollno)
     {
@@ -407,15 +445,24 @@ class StudentController extends Controller
         ]);
 
         // Create a new user
-        $user = new User();
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password); // Hash the password
-        $user->save();
+        $otp = rand(100000, 999999);
 
-        // Redirect to the login page with a success message
-        return redirect()->route('register')->withSuccess('User Registration Done successfully!!!');
+        // Store user info and OTP in session
+        Session::put('otp', $otp);
+        Session::put('pending_user', [
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'password' => $request->password // Store plain password temporarily
+        ]);
+
+        // Send OTP Email
+        Mail::raw("Hello !! Your OTP for registration is: $otp", function ($message) use ($request) {
+            $message->to($request->email)
+                ->subject('OTP for Registration');
+        });
+
+        return redirect('/verify-otp')->with('success', 'An OTP has been sent to your email. Please verify to complete registration.');
     }
 
 

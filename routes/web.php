@@ -26,16 +26,21 @@ Route::middleware(['guest', 'preventBackHistory'])->group(function () {
 
     Route::post('/login', [StudentController::class, 'login'])->name('login.post'); // POST route for handling login
     Route::post('/register', [StudentController::class, 'register'])->name('register.post');
-    
-// Password Reset Routes...
-Route::get('password/reset', [StudentController::class, 'showLinkRequestForm'])
-     ->name('password.request');
-Route::post('password/email', [StudentController::class, 'sendResetLinkEmail'])
-     ->name('password.email');
-Route::get('password/reset/{token}', [StudentController::class, 'showResetForm'])
-     ->name('password.reset');
-Route::post('password/reset', [StudentController::class, 'reset'])
-     ->name('password.update');
+
+    // Password Reset Routes...
+    Route::get('password-reset', [StudentController::class, 'showLinkRequestForm'])
+        ->name('password-request');
+    Route::post('password-email', [StudentController::class, 'sendResetLinkEmail'])
+        ->name('password-email');
+    Route::get('password-reset/{token}', [StudentController::class, 'showResetForm'])
+        ->name('password-reset');
+    Route::post('password-reset', [StudentController::class, 'reset'])
+        ->name('password-update');
+
+    Route::get('/verify-otp', [StudentController::class, 'showOtpForm'])->name('showotpform');
+    Route::post('/verify-otp', [StudentController::class, 'verifyOtp'])->name('verifyotp');
+
+
 });
 
 // Routes for authenticated users

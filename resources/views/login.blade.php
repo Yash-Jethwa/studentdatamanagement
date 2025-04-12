@@ -69,7 +69,7 @@
 
         <div class="row">
         <div class="col-md-12">
-          <a href="{{ route('password.request')}}"> <span class="current">Forgot Password ?</span></a>
+          <a href="{{ route('password-request')}}"> <span class="current">Forgot Password ?</span></a>
         </div>
         </div>
 

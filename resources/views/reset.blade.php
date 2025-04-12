@@ -30,7 +30,7 @@
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <a href="{{ route('login') }}">Login</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="{{ route('password.request')}}">Reset Password</a>
+            <a href="{{ route('password-request')}}">Reset Password</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <a href=""> <span class="current">Reset Password Link</span></a>
         </div>
@@ -47,7 +47,7 @@
                     <div class="card-header">{{ __('Reset Password') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('password.update') }}">
+                        <form method="POST" action="{{ route('password-update') }}">
                             @csrf
 
                             <input type="hidden" name="token" value="{{ $token }}">
@@ -69,6 +69,8 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="row mb-3">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
@@ -86,6 +88,8 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="row mb-3">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
@@ -96,6 +100,8 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
@@ -103,6 +109,9 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <br>
+                            
                         </form>
                     </div>
                 </div>

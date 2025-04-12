@@ -29,7 +29,7 @@
             <span class="mx-3 icon-keyboard_arrow_right"></span>
             <a href="{{ route('login') }}">Login</a>
             <span class="mx-3 icon-keyboard_arrow_right"></span>
-            <a href="{{ route('password.request')}}"> <span class="current">Reset Password</span></a>
+            <a href="{{ route('password-request')}}"> <span class="current">Reset Password</span></a>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-5">
 
-                    <form action="{{ route('password.email') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('password-email') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
                         <div class="row">
