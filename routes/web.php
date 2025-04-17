@@ -72,6 +72,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
 
     Route::get('/student-kanban', [StudentController::class, 'kanban'])->name('student.kanban');
     Route::post('/student-kanban/{rollno}', [StudentController::class, 'updatestatus'])->name('student.kanban.update');
+
+    Route::get('profile', [StudentController::class, 'profile'])->name('profile');
 });
 
 

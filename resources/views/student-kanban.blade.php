@@ -37,12 +37,14 @@
 @endsection
 
 @section('logoutbtn')
-  <div class="col-lg-3 text-right">
-    <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="small btn btn-danger">LOGOUT</button>
-    </form>
-  </div>
+    <div class="col-lg-3 text-right">
+        <a href="{{ route('profile') }}" class="small btn btn-primary px-4 py-2 rounded-1"><span
+                class="icon-user"></span></a>
+        <form action="{{ url('/logout') }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="small btn btn-danger px-4 py2"><span class="icon-sign-out"></span></button>
+        </form>
+    </div>
 @endsection
 
 @section('navbar')

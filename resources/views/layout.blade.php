@@ -112,7 +112,7 @@
 
           <div class="ml-auto">
             <div class="social-wrap">
-              <a href=""><span class="icon-facebook"></span></a>
+              <a href="https://www.facebook.com/"><span class="icon-facebook"></span></a>
               <a href="https://github.com/Yash-Jethwa"><span class="icon-github"></span></a>
               <a href="https://www.linkedin.com/in/yash-jethwa-241592296"><span class="icon-linkedin"></span></a>
 

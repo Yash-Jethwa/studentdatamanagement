@@ -22,10 +22,21 @@ use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
+    public function profile()
+    {
+        $user = User::where('id', Auth::id())->latest()->first();
+    
+        return view('profile', [
+            'user' => $user
+        ]);
+    }
+
+
     public function showOtpForm()
     {
         return view('verify-OTP');
     }
+
 
     public function verifyOtp(Request $request)
     {
@@ -60,6 +71,7 @@ class StudentController extends Controller
         return view('email');
     }
 
+
     public function sendResetLinkEmail(Request $request)
     {
         $request->validate(['email' => 'required|email'], [
@@ -79,12 +91,14 @@ class StudentController extends Controller
             : back()->withErrors(['email' => __($status)]);
     }
 
+
     public function showResetForm(Request $request)
     {
         return view('reset')->with(
             ['token' => $request->token, 'email' => $request->email]
         );
     }
+
 
     public function reset(Request $request)
     {

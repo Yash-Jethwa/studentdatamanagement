@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row align-items-center">
       <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-        <h1>For Student Data Management</h1>
+        <h1> Student Data Management</h1>
       </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="container">
       <div class="row align-items-center">
       <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-        <h1>Complete Work Easily</h1>
+        <h1> For Educational Institutions</h1>
       </div>
       </div>
     </div>
@@ -63,7 +63,7 @@
         <span class="flaticon-mortarboard text-white"></span>
         </div>
         <div class="feature-1-content">
-        <h2>Personalize Learning</h2>
+        <h2>Robust Security</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
         <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
         </div>
@@ -75,7 +75,7 @@
         <span class="flaticon-school-material text-white"></span>
         </div>
         <div class="feature-1-content">
-        <h2>Trusted Courses</h2>
+        <h2>Trusted Services</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
         <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
         </div>
@@ -87,7 +87,7 @@
         <span class="flaticon-library text-white"></span>
         </div>
         <div class="feature-1-content">
-        <h2>Tools for Students</h2>
+        <h2>Tools For Institutions</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit morbi hendrerit elit</p>
         <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
         </div>
@@ -106,13 +106,13 @@
     <div class="row mb-5 justify-content-center text-center">
       <div class="col-lg-6 mb-5">
       <h2 class="section-title-underline mb-3">
-        <span>Popular Courses</span>
+        <span>Popular Services</span>
       </h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, id?</p>
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
       <div class="owl-slide-3 owl-carousel">
         <div class="course-1-item">
@@ -256,7 +256,7 @@
       </div>
 
       </div>
-    </div>
+    </div> -->
 
 
 
@@ -421,93 +421,93 @@
     </div>
   </div>
 
-  <div class="news-updates">
+  <!-- <div class="news-updates">
     <div class="container">
 
     <div class="row">
       <div class="col-lg-9">
       <div class="section-heading">
-        <h2 class="text-black">News &amp; Updates</h2>
-        <a href="#">Read All News</a>
+      <h2 class="text-black">News &amp; Updates</h2>
+      <a href="#">Read All News</a>
       </div>
       <div class="row">
-        <div class="col-lg-6">
-        <div class="post-entry-big">
-          <a href="news-single.html" class="img-link"><img src="images/blog_large_1.jpg" alt="Image"
-            class="img-fluid"></a>
-          <div class="post-content">
-          <div class="post-meta">
-            <a href="#">June 6, 2019</a>
-            <span class="mx-1">/</span>
-            <a href="#">Admission</a>, <a href="#">Updates</a>
-          </div>
-          <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
-          </div>
+      <div class="col-lg-6">
+      <div class="post-entry-big">
+        <a href="news-single.html" class="img-link"><img src="images/blog_large_1.jpg" alt="Image"
+        class="img-fluid"></a>
+        <div class="post-content">
+        <div class="post-meta">
+        <a href="#">June 6, 2019</a>
+        <span class="mx-1">/</span>
+        <a href="#">Admission</a>, <a href="#">Updates</a>
         </div>
+        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
         </div>
-        <div class="col-lg-6">
-        <div class="post-entry-big horizontal d-flex mb-4">
-          <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image"
-            class="img-fluid"></a>
-          <div class="post-content">
-          <div class="post-meta">
-            <a href="#">June 6, 2019</a>
-            <span class="mx-1">/</span>
-            <a href="#">Admission</a>, <a href="#">Updates</a>
-          </div>
-          <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
-          </div>
+      </div>
+      </div>
+      <div class="col-lg-6">
+      <div class="post-entry-big horizontal d-flex mb-4">
+        <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image"
+        class="img-fluid"></a>
+        <div class="post-content">
+        <div class="post-meta">
+        <a href="#">June 6, 2019</a>
+        <span class="mx-1">/</span>
+        <a href="#">Admission</a>, <a href="#">Updates</a>
         </div>
+        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+        </div>
+      </div>
 
-        <div class="post-entry-big horizontal d-flex mb-4">
-          <a href="news-single.html" class="img-link mr-4"><img src="images/blog_2.jpg" alt="Image"
-            class="img-fluid"></a>
-          <div class="post-content">
-          <div class="post-meta">
-            <a href="#">June 6, 2019</a>
-            <span class="mx-1">/</span>
-            <a href="#">Admission</a>, <a href="#">Updates</a>
-          </div>
-          <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
-          </div>
+      <div class="post-entry-big horizontal d-flex mb-4">
+        <a href="news-single.html" class="img-link mr-4"><img src="images/blog_2.jpg" alt="Image"
+        class="img-fluid"></a>
+        <div class="post-content">
+        <div class="post-meta">
+        <a href="#">June 6, 2019</a>
+        <span class="mx-1">/</span>
+        <a href="#">Admission</a>, <a href="#">Updates</a>
         </div>
+        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
+        </div>
+      </div>
 
-        <div class="post-entry-big horizontal d-flex mb-4">
-          <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image"
-            class="img-fluid"></a>
-          <div class="post-content">
-          <div class="post-meta">
-            <a href="#">June 6, 2019</a>
-            <span class="mx-1">/</span>
-            <a href="#">Admission</a>, <a href="#">Updates</a>
-          </div>
-          <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
-          </div>
+      <div class="post-entry-big horizontal d-flex mb-4">
+        <a href="news-single.html" class="img-link mr-4"><img src="images/blog_1.jpg" alt="Image"
+        class="img-fluid"></a>
+        <div class="post-content">
+        <div class="post-meta">
+        <a href="#">June 6, 2019</a>
+        <span class="mx-1">/</span>
+        <a href="#">Admission</a>, <a href="#">Updates</a>
         </div>
+        <h3 class="post-heading"><a href="news-single.html">Campus Camping and Learning Session</a></h3>
         </div>
+      </div>
+      </div>
       </div>
       </div>
       <div class="col-lg-3">
       <div class="section-heading">
-        <h2 class="text-black">Campus Videos</h2>
-        <a href="#">View All Videos</a>
+      <h2 class="text-black">Campus Videos</h2>
+      <a href="#">View All Videos</a>
       </div>
       <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
-        <span class="play">
-        <span class="icon-play"></span>
-        </span>
-        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+      <span class="play">
+      <span class="icon-play"></span>
+      </span>
+      <img src="images/course_5.jpg" alt="Image" class="img-fluid">
       </a>
       <a href="https://vimeo.com/45830194" class="video-1 mb-4" data-fancybox="" data-ratio="2">
-        <span class="play">
-        <span class="icon-play"></span>
-        </span>
-        <img src="images/course_5.jpg" alt="Image" class="img-fluid">
+      <span class="play">
+      <span class="icon-play"></span>
+      </span>
+      <img src="images/course_5.jpg" alt="Image" class="img-fluid">
       </a>
       </div>
     </div>
     </div>
-  </div>
+    </div> -->
 
   <div class="site-section ftco-subscribe-1" style="background-image: url('images/bg_1.jpg')">
     <div class="container">
